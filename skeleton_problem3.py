@@ -38,9 +38,12 @@ def naiveApproach(tripLocations, startRectangle, endRectangle):
     #which start in the startRectangle region and end in the endRectangle region
     indices = []
     startTime = time.time()
-
-
-
+    num = 0
+    for i in tripLocations:
+        if startRectangle[0][0]<=i[0] and startRectangle[0][1]>=i[0] and startRectangle[1][0]<=i[1] and startRectangle[1][1]>=i[1] and endRectangle[0][0]<=i[2] and endRectangle[0][1]>=i[2] and endRectangle[1][0]<=i[3] and endRectangle[1][1]>=i[3]:
+            indices.append(num)
+        num+=1
+    print indices
     #TODO: insert your code here. You should implement the naive approach, i.e., loop 
     #      through all the trips and find the closest intersection by looping through
     #      all of them
@@ -62,7 +65,7 @@ def kdtreeApproach(tripLocations, startRectangle, endRectangle):
     for i,j,k,l in tripLocations:
         trip1.append([i,j])
         trip2.append([k,l])
-    print trip1
+    #print trip1
     startTime = time.time()
 
 
@@ -77,11 +80,14 @@ def kdtreeApproach(tripLocations, startRectangle, endRectangle):
 
     tree1 = KDTree(trip1)
     tree2 = KDTree(trip2)
-    start = tree1.query_ball_point([startx,starty], srad)
-    end = tree2.query_ball_point([endx, endy], erad)
-    indices.append(start)
-    indices.append(end)
-    print indices
+    start = set(tree1.query_ball_point([startx,starty], srad))
+    end = set(tree2.query_ball_point([endx, endy], erad))
+    in_both = start.intersection(end)
+    print len(in_both)
+
+    #indices.append(start)
+    #indices.append(end)
+    #print indices
 
     #TODO: insert your code here. You should build the kdtree and use it to query the closest
     #      intersection for each trip
