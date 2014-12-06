@@ -39,6 +39,8 @@ def naiveApproach(tripLocations, startRectangle, endRectangle):
     indices = []
     startTime = time.time()
 
+
+
     #TODO: insert your code here. You should implement the naive approach, i.e., loop 
     #      through all the trips and find the closest intersection by looping through
     #      all of them
@@ -66,7 +68,7 @@ def kdtreeApproach(tripLocations, startRectangle, endRectangle):
 
 
     srad = sqrt((startRectangle[0][0] - startRectangle[0][1])**2 + (startRectangle[1][0] - startRectangle[1][1])**2)/float(2)
-    erad = sqrt((endRectangle[0][0] - endRectangle[0][1])**2  (endRectangle[1][0] - endRectangle[1][1])**2)/float(2)
+    erad = sqrt((endRectangle[0][0] - endRectangle[0][1])**2 + (endRectangle[1][0] - endRectangle[1][1])**2)/float(2)
     startx = (startRectangle[0][0] + startRectangle[0][1])/2
     starty = (startRectangle[1][0] + startRectangle[1][1])/2
     endx = (endRectangle[0][0] + endRectangle[0][1])/2
