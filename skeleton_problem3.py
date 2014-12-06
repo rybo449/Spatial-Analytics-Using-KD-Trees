@@ -82,9 +82,12 @@ def kdtreeApproach(tripLocations, startRectangle, endRectangle):
     tree2 = KDTree(trip2)
     start = set(tree1.query_ball_point([startx,starty], srad))
     end = set(tree2.query_ball_point([endx, endy], erad))
-    in_both = start.intersection(end)
+    in_both = list(start.intersection(end))
     print len(in_both)
-
+    for i in in_both:
+        if startRectangle[0][0]<=tripLocations[i][0] and startRectangle[0][1]>=tripLocations[i][0] and startRectangle[1][0]<=tripLocations[i][1] and startRectangle[1][1]>=tripLocations[i][1] and endRectangle[0][0]<=tripLocations[i][2] and endRectangle[0][1]>=tripLocations[i][2] and endRectangle[1][0]<=tripLocations[i][3] and endRectangle[1][1]>=tripLocations[i][3]:
+            indices.append(i)
+    print indices        
     #indices.append(start)
     #indices.append(end)
     #print indices
